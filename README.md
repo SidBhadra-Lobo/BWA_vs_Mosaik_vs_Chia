@@ -150,6 +150,7 @@ Mate Pair Issues
  Used egrep  with extended regular expressions to check read lengths.
 
 $egrep "^@.*length=[0-9]$" mate_1.fastq | cut -d ' ' -f 3 | sort -n -r | uniq -c | less
+
 $egrep "^@.*length=[0-9]{1,3}$" mate_2.fastq | cut -d ' ' -f 3 | sort -n -k 2 -r | uniq -c | less
 
 
