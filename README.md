@@ -1,4 +1,3 @@
-
 Mosaik-1.1.0014 VS MOSAIK-2.1.73
 (Inconsistency Issues flagged in RED, Resolutions in BLUE)
 
@@ -11,7 +10,7 @@ Mosaik Reference Archives
 
 Mosaik-1.1.0014
 
-	$./Mosaik-1.1.0014/bin/MosaikBuild -fr CRM_files/UniqueCRM2.fasta -oa CRM_files/	UniqueCRM2_Mosaik1.dat 
+	$./Mosaik-1.1.0014/bin/MosaikBuild -fr CRM_mapping/CRM_files/UniqueCRM2.fasta -oa CRM_mapping/CRM_files/	UniqueCRM2_Mosaik1.dat 
 
 Output
 ------------------------------------------------------------------------------
@@ -46,7 +45,7 @@ MosaikBuild CPU time: 0.005 s, wall time: 1.009 s
 
 MOSAIK-2.1.73
 
-	$MOSAIK-2.1.73-mac-binary/MosaikBuild -fr CRM_mapping/CRM_files/UniqueCRM2.fasta -oa 	CRM_files/UniqueCRM2.dat
+	$MOSAIK-2.1.73-mac-binary/MosaikBuild -fr CRM_mapping/CRM_files/UniqueCRM2.fasta -oa CRM_mapping/CRM_files/UniqueCRM2.dat
 
 Output
 ------------------------------------------------------------------------------
@@ -117,7 +116,7 @@ MosaikBuild CPU time: 1.803 s, wall time: 2.046 s
 
 MosaikBuild 2.1.73  
 
-	$MOSAIK-2.1.73-mac-binary/MosaikBuild -q CRM_mapping/CRM_files/SRR023594_1.fastq -out 	CRM_mapping/CRM_files/SRR023594_1.dat -st illumina
+	$./MOSAIK-2.1.73-mac-binary/MosaikBuild -q CRM_mapping/CRM_files/SRR023594_1.fastq -out 	CRM_mapping/CRM_files/SRR023594_1.dat -st illumina
 
 Output
 ------------------------------------------------------------------------------
@@ -144,10 +143,11 @@ MosaikBuild CPU time: 1.767 s, wall time: 2.065 s
 Mate Pair Issues
 
 #Splitting the SRR023594.fastq into 2 mates revealed that mate 1 was incompatible.
+#Checking the origins of the file on google revealed it was 454 seq for E. coli
 #mate_1.fastq had only 4 base pairs
 #mate_2.fastq has read lengths in excess of 200 bp.
 
- Used egrep  with extended regular expressions to check lengths.
+ Used egrep  with extended regular expressions to check read lengths.
 
 $egrep "^@.*length=[0-9]$" mate_1.fastq | cut -d ' ' -f 3 | sort -n -r | uniq -c | less
 $egrep "^@.*length=[0-9]{1,3}$" mate_2.fastq | cut -d ' ' -f 3 | sort -n -k 2 -r | uniq -c | less
@@ -192,7 +192,7 @@ MosaikBuild CPU time: 1.537 s, wall time: 2.042 s
 
 ##############################################
 
-$MOSAIK-2.1.73-mac-binary/MosaikBuild -q CRM_mapping/CRM_files/mate_2.fastq -out CRM_mapping/CRM_files/singleMosaik2.dat -st illumina
+$./MOSAIK-2.1.73-mac-binary/MosaikBuild -q CRM_mapping/CRM_files/mate_2.fastq -out CRM_mapping/CRM_files/singleMosaik2.dat -st illumina
 
 ------------------------------------------------------------------------------
 MosaikBuild 2.1.73                                                  2012-11-08
@@ -218,7 +218,7 @@ MosaikBuild CPU time: 1.446 s, wall time: 2.596 s
 
 Alignment 
 
-$Mosaik-1.1.0014/bin/MosaikAligner -in CRM_mapping/CRM_files/single_Mosaik1.dat -ia CRM_mapping/CRM_files/UniqueCRM2.dat -out CRM_mapping/CRM_files/reads.dat -hs 10 -act 11 -mmp 0.2 -bw 41 -mhp 200 -a all
+$./Mosaik-1.1.0014/bin/MosaikAligner -in CRM_mapping/CRM_files/single_Mosaik1.dat -ia CRM_mapping/CRM_files/UniqueCRM2.dat -out CRM_mapping/CRM_files/reads.dat -hs 10 -act 11 -mmp 0.2 -bw 41 -mhp 200 -a all
 
 ------------------------------------------------------------------------------
 MosaikAligner 1.1.0014                                              2010-10-01
@@ -255,7 +255,7 @@ MosaikAligner CPU time: 25.341 s, wall time: 26.680 s
 
 ##############################################
 
-$MOSAIK-2.1.73-mac-binary/MosaikAligner -in CRM_mapping/CRM_files/single_Mosaik2.dat -ia CRM_mapping/CRM_files/UniqueCRM2.dat -out CRM_mapping/CRM_files/reads.dat -annpe MOSAIK-2.1.73-mac-binary/2.1.26.pe.100.0065.ann -annse MOSAIK-2.1.73-mac-binary/2.1.26.se.100.005.ann -hs 10 -act 11 -mmp 0.2 -bw 41 -mhp 200 -a all
+$./MOSAIK-2.1.73-mac-binary/MosaikAligner -in CRM_mapping/CRM_files/single_Mosaik2.dat -ia CRM_mapping/CRM_files/UniqueCRM2.dat -out CRM_mapping/CRM_files/reads.dat -annpe MOSAIK-2.1.73-mac-binary/2.1.26.pe.100.0065.ann -annse MOSAIK-2.1.73-mac-binary/2.1.26.se.100.005.ann -hs 10 -act 11 -mmp 0.2 -bw 41 -mhp 200 -a all
 
 ------------------------------------------------------------------------------
 MosaikAligner 2.1.73                                                2012-11-08
