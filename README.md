@@ -1,5 +1,5 @@
 Mosaik-1.1.0014 VS MOSAIK-2.1.73
-(Inconsistency Issues flagged in RED, Resolutions in BLUE)
+
 
 # Path used
 	PATH=$PATH:/Users/Sid/Projects/
